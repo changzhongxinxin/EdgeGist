@@ -38,6 +38,8 @@ jobs:
           sed -i "s/\"change-this-token\"/\"${{ secrets.OWNER_TOKEN }}\"/g" wrangler.jsonc
           sed -i "s|https://edge-gist.your-subdomain.workers.dev|${{ secrets.BASE_URL }}|g" wrangler.jsonc
           sed -i "s/\"replace-with-cloudflare-d1-database-id\"/\"${{ secrets.D1_DATABASE_ID }}\"/g" wrangler.jsonc
+          sed -i "s|your-domain.com/\*|${{ secrets.DOMAIN }}/*|g" wrangler.jsonc
+          sed -i "s/\"your-domain.com\"/\"${{ secrets.ZONE_NAME }}\"/g" wrangler.jsonc
 
       - name: Build
         run: bun run build
